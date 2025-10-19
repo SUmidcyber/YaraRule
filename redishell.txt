@@ -1,0 +1,10 @@
+185.243.115.230
+45.133.216.177
+microsoft-update.net
+windows-telemetry.com
+POST
+sleep
+6379
+443
+FF:FF:FF:FF:FF:F
+FF:FF:FF:FF:FF:FF
