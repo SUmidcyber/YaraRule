@@ -1,4 +1,4 @@
-# TangerineTurkey YARA Kuralı - Kapsamlı Tehdit Tespiti
+# TangerineTurkey YARA Kuralı - Kapsamlı Tehdit Tespit
 
 ## 🚨 Tehdit Analizi
 
