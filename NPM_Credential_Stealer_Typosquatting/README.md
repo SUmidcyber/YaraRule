@@ -38,10 +38,10 @@ require('discordjs'); // 🚨 TYPO ALERT!
 ## 🚀 **Hemen Kullan**
 ```bash
 # Projende güvenlik taraması yap
-yara npm_kurali.yar şüpheli-paket.js
+yara NPM_Credential_Stealer_Typosquatting.yar şüpheli-paket.js
 
 # Tüm node_modules'i tara  
-yara -r npm_kurali.yar ./node_modules/
+yara -r NPM_Credential_Stealer_Typosquatting.yar ./node_modules/
 ```
 
 **⚠️ Uyarı:** Bu kural, projende gizlenmiş npm tuzaklarını ortaya çıkarır!
