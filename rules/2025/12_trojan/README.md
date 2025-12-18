@@ -1,0 +1,15 @@
+# Trojan YARA Rules - 12_trojan
+
+## 📋 Açıklama
+Bu klasör, **Trojan** türündeki malware'ler için otomatik oluşturulmuş YARA kurallarını içerir.
+
+## 📊 Bilgiler
+- **Kaynak:** ReversingLabs Blog
+- **Platform:** MultiPlatform
+- **Oluşturulma:** 2025-12-18 15:30:39
+- **Oluşturan:** UmidCyber AI Bot v2.0
+
+## 🚀 Kullanım
+```bash
+yara -r rules/2025/12_trojan/ malware_sample.exe
+```
