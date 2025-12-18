@@ -1,94 +1,118 @@
-## 🔍 YARA Rule Deposu - Gelişmiş Tehdit Tespiti
-Profesyonel seviyede YARA kuralları ile gelişmiş tehdit tespiti - RediShell analizi ile başlıyoruz
+# 🛡️ Advanced YARA Repository: Tactical Threat Detection
+
+**Automated Malware Analysis & Advanced Pattern Matching**
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/865513bd-c5ce-4c14-951f-3a394542ae95" width="700" alt="Ekran Görüntüsü">
+<img src="https://github.com/user-attachments/assets/030f5383-061d-4103-8790-67105727d6a9" width="850" alt="Cyber Security Banner">
 </div>
 
-## 🎯 Repo Amacı
-Bu repository, siber güvenlik uzmanları, SOC ekipleri ve tehdit avcıları için profesyonel YARA kurallarını bir araya getiren canlı bir bilgi havuzudur. Her kural derinlemesine malware analizi ve reverse engineering çalışmaları sonucunda geliştirilmiştir.
+  ![YARA](https://img.shields.io/badge/Detection-YARA-red?style=for-the-badge&logo=yara)
+  ![Malware](https://img.shields.io/badge/Focus-Malware_Analysis-blue?style=for-the-badge&logo=fortinet)
+  ![Status](https://img.shields.io/badge/Status-Active_Research-green?style=for-the-badge)
+---
 
-## 🛡️ Kapsamlı Tespit Özellikleri
+## 🚀 Proje Vizyonu
 
-    Kural: RediShell_NetworkBehavior
-    Açıklama: RediShell arka kapı aktivitesini ağ imzaları ve davranış kalıpları ile tespit eder
-    Tehdit Seviyesi: YÜKSEK
-    Kapsam: Ağ trafiği, bellek artefaktları, kalıcılık mekanizmaları
-    
-## ⚡ Hızlı Başlangıç
+Sadece "imza" değil, **"davranış"** avlıyoruz. Bu repository, modern tehdit aktörlerinin (APT), karmaşık arka kapıların (Backdoors) ve RediShell gibi sofistike zararlıların izini sürmek için optimize edilmiş **kurumsal düzeyde YARA kuralları** sunar.
 
-    - RediShell kuralı ile tarama
-    yara64.exe -r RediShell_NetworkBehavior.yar C:\hedef_klasör\
-    
-    - Kuralları derleme (performans için)
-    yarac64.exe kurallar.yar derlenmis_kurallar
-    yara64.exe derlenmis_kurallar şüpheli_dosya.exe
 
-## 💼 Kimler Kullanabilir?
-    
-    🔹 SOC Ekipleri
-    
-    Ortalama Tespit Süresini (MTTD) azaltın
-    Otomatik tehdit avı yetenekleri kazanın
-    Mevcut güvenlik sistemlerinizle entegre edin
+> **💡 Önemli:** Kurallarımız, tersine mühendislik (Reverse Engineering) süreçlerinden elde edilen derinlemesine analizlerle, "Düşük False-Positive" prensibiyle yazılmıştır.
 
-    🔹 Malware Analistleri
-    
-    Derinlemesine zararlı yazılım analizi
-    Ayrıştırma (IOC) bilgileri
-    Davranışsal tespit metodları
+---
 
-    🔹 Incident Response Ekipleri
-    
-    Hızlı müdahale kabiliyeti
-    Adli bilişim artefakt tespiti
-    Kalıcılık mekanizması tespiti
-## 🎯 Neden Bu Repository?
+## 🔬 Öne Çıkan Analiz: RediShell
 
-    ✅ Profesyonel Seviye Kurallar
-    
-    Davranışsal Analiz: Statik imzalardan öteye geçin
-    Düşük Yanlış Pozitif: Bağlam duyarlı desen eşleme
-    Çok Yönlü Kapsam: Bellek, ağ ve disk artefaktları
+| Özellik | Detay |
+| --- | --- |
+| **Hedef** | RediShell Backdoor & Network Activity |
+| **Kritiklik** | 🔴 Kritik (High) |
+| **Tespit Yöntemi** | Statik Hex + Dinamik Network Davranışı |
+| **Kapsam** | Memory, Network Traffic, Persistence |
 
-    🔬 Güncel Tehdit İstihbaratı
-    
-    Kurallarımız sürekli güncellenir:
-    Yeni saldırı teknikleri
-    Canlı tehdit istihbaratı
-    Gerçek dünya validasyonu
+---
 
-    🛠️ Pratik Çözümler
-    
-    Hızlı deployment
-    Detaylı dokümantasyon
-    Örnek kullanım senaryoları
+## 🛠️ Teknik Entegrasyon & Kullanım
 
-## 🚀 Başlarken
-1. Hemen Kullanmaya Başlayın
+### 1. Hızlı Tarama (Live Response)
 
-# Repoyu klonlayın
-    git clone https://github.com/SUmidcyber/YaraRule
-    cd YaraRule
-    
-## 2. Entegrasyon Seçenekleri
-    SIEM sistemleri ile entegrasyon
-    EDR platformları için özel kurallar
-    Otomatik malware analiz pipeline'ları
-    Tehdit avı platformları
+Dosya sistemi üzerinde anlık tarama yapmak için:
 
-## 3. Test Ortamı
+```bash
+# Alt klasörlerle birlikte derin tarama
+yara64.exe -r ./rules/RediShell_NetworkBehavior.yar C:\Windows\Temp\
 
-    Geliştirme ortamlarında test edin
-    Yanlış pozitif oranlarını optimize edin
-    Kurumsal ortamınıza uyarlayın
+```
 
-## 📞 Katkı & İletişim
+### 2. Performans Optimizasyonu (Compiling)
 
-    Geliştirici: Umid Mammadov
-    Uzmanlık: Malware Analizi, Reverse Engineering, YARA Rule Development
-    Misyon: Siber güvenlik topluluğuna kaliteli tespit kuralları sağlamak
-    Web Sayfam: https://sibermerkez.com/
-    Linkedin: https://www.linkedin.com/in/umid-mammadov-951968278/
-    YouTube: https://www.youtube.com/@umidcyber
-    Gmail: umid.cybersec@gmail.com
+Büyük veri setlerinde tarama hızını %300 artırmak için kuralları derleyin:
+
+```bash
+yarac64.exe all_rules.yar compiled_rules.bin
+yara64.exe compiled_rules.bin /path/to/target
+
+```
+
+---
+
+## 💼 Operasyonel Faydalar
+
+<details>
+<summary><b>🛡️ SOC & Tehdit Avcıları İçin</b></summary>
+
+* **MTTD Azaltımı:** Karmaşık tehditleri saniyeler içinde tespit edin.
+* **SIEM Uyumluluğu:** Kuralları doğrudan SIEM veya EDR platformlarınıza entegre edin.
+</details>
+
+<details>
+<summary><b>🔬 Malware Analistleri İçin</b></summary>
+
+* **Deep Analysis:** Zararlı yazılımların paketlenmiş (packed) hallerinden bile kurtulabilen string yapıları.
+* **Behavioral IOCs:** Sadece dosya hash'ine değil, fonksiyon çağrılarına odaklanan tespitler.
+</details>
+
+<details>
+<summary><b>🚨 Incident Response (IR) Ekipleri İçin</b></summary>
+
+* **Artifact Detection:** Adli bilişim süreçlerinde kalıntı analizi.
+* **Persistence Hunting:** Kayıt defteri ve servislerdeki gizli kalıcılık yöntemlerini yakalayın.
+</details>
+
+---
+
+## 🎯 Neden Bu Repository'yi Takip Etmelisiniz?
+
+* **✅ High-Fidelity:** Yanlış alarmları minimize eden gelişmiş mantıksal operatörler.
+* **📡 Live Intelligence:** Tehdit dünyasındaki değişimlere göre haftalık güncellenen kural setleri.
+* **🏗️ Modular Structure:** Her tehdit ailesi için kategorize edilmiş klasör yapısı.
+
+---
+
+## 📞 İletişim & Topluluk
+
+<div align="left">
+<a href="[https://sibermerkez.com/](https://sibermerkez.com/)">🌐 <b>Web:</b> Siber Merkez</a>
+
+
+
+
+<a href="[https://www.linkedin.com/in/umid-mammadov-951968278/](https://www.linkedin.com/in/umid-mammadov-951968278/)">🔗 <b>LinkedIn:</b> Umid Mammadov</a>
+
+
+
+
+<a href="[https://www.youtube.com/@umidcyber](https://www.youtube.com/@umidcyber)">📺 <b>YouTube:</b> Teknik Analizler</a>
+
+
+
+
+<a href="mailto:umid.cybersec@gmail.com">📧 <b>E-Posta:</b> umid.cybersec@gmail.com</a>
+</div>
+
+---
+
+<div align="center">
+<sub>UmidCyber tarafından ❤️ ve Siber Güvenlik Tutkusu ile geliştirilmiştir.</sub>
+</div>
+
+---
