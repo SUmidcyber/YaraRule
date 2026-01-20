@@ -1,81 +1,118 @@
-# 🛡️ APT Covert Access Hunter (Seqrite Operation)
+# 🛡️ Advanced YARA Repository: Tactical Threat Detection
 
-## 📋 Proje Hakkında (About)
+**Automated Malware Analysis & Advanced Pattern Matching**
 
-**APT Covert Access Hunter**, özellikle Arjantin Adli Sektörü'nü ve kamu kurumlarını hedef alan gelişmiş siber casusluk operasyonlarını tespit etmek amacıyla geliştirilmiş, **kurumsal sınıf (Enterprise-Grade)** bir YARA kural setidir.
+<div align="center">
+<img src="https://github.com/user-attachments/assets/030f5383-061d-4103-8790-67105727d6a9" width="850" alt="Cyber Security Banner">
+</div>
 
-Bu proje, **Seqrite** tarafından raporlanan *"Operation Covert Access"* saldırı zincirini (Kill Chain) baz alır. Saldırganların kullandığı karmaşık kaçış tekniklerini (obfuscation), sinsi LNK dosyalarını ve bellekte çalışan (fileless) PowerShell tehditlerini analiz ederek, geleneksel antivirüslerin kaçırabileceği tehditleri yakalar.
+  ![YARA](https://img.shields.io/badge/Detection-YARA-red?style=for-the-badge&logo=yara)
+  ![Malware](https://img.shields.io/badge/Focus-Malware_Analysis-blue?style=for-the-badge&logo=fortinet)
+  ![Status](https://img.shields.io/badge/Status-Active_Research-green?style=for-the-badge)
+---
 
-> **Amaç:** Kurumların SOC (Güvenlik Operasyon Merkezi) ekiplerine, devlet destekli veya gelişmiş siber suç gruplerına (APT) karşı proaktif bir savunma hattı sunmaktır.
+## 🚀 Proje Vizyonu
+
+Sadece "imza" değil, **"davranış"** avlıyoruz. Bu repository, modern tehdit aktörlerinin (APT), karmaşık arka kapıların (Backdoors) ve RediShell gibi sofistike zararlıların izini sürmek için optimize edilmiş **kurumsal düzeyde YARA kuralları** sunar.
+
+
+> **💡 Önemli:** Kurallarımız, tersine mühendislik (Reverse Engineering) süreçlerinden elde edilen derinlemesine analizlerle, "Düşük False-Positive" prensibiyle yazılmıştır.
 
 ---
 
-## 🚀 Özellikler (Key Features)
+## 🔬 Öne Çıkan Analiz: RediShell
 
-Bu kural seti, basit dize eşleşmelerinin ötesine geçerek **davranışsal analiz** yapar:
-
-* **🕵️‍♂️ Çok Katmanlı Tespit:** Saldırının üç aşamasını da (Giriş, Yayılma, Yerleşme) ayrı ayrı hedefler.
-* **🧠 Anti-Evasion (Atlatma Önleyici):** `powershell`, `pwsh`, `cmd`, `WindowStyle Hidden` gibi komutların Base64 ile gizlenmiş veya farklı varyasyonlarını algılar.
-* **🎯 Düşük "False Positive" Oranı:** Sadece kötü niyetli kombinasyonları (Örn: LNK + PowerShell + Ağ Aktivitesi) hedefleyerek gereksiz alarmları önler.
-* **🌍 MITRE ATT&CK Uyumu:** Kurallar, endüstri standardı olan MITRE çerçevesine tam uyumludur.
+| Özellik | Detay |
+| --- | --- |
+| **Hedef** | RediShell Backdoor & Network Activity |
+| **Kritiklik** | 🔴 Kritik (High) |
+| **Tespit Yöntemi** | Statik Hex + Dinamik Network Davranışı |
+| **Kapsam** | Memory, Network Traffic, Persistence |
 
 ---
 
-## 🛠️ Kurulum ve Kullanım (Usage)
+## 🛠️ Teknik Entegrasyon & Kullanım
 
-Bu kural setini kullanmak için sisteminizde [YARA](https://virustotal.github.io/yara/) kurulu olmalıdır.
+### 1. Hızlı Tarama (Live Response)
 
-### 1. Dosyayı İndirin
+Dosya sistemi üzerinde anlık tarama yapmak için:
 
-Repo'yu klonlayın veya `APT_CovertAccess_Hunter.yar` dosyasını indirin.
-
-### 2. Tarama Başlatın (Threat Hunting)
-
-Tüm sistemi veya şüpheli bir dizini taramak için aşağıdaki komutu kullanın:
-
-```powershell
-# Windows (PowerShell)
-.\yara64.exe -r .\APT_CovertAccess_Hunter.yar C:\Users\Public\
-
-# Linux / Mac
-yara -r APT_CovertAccess_Hunter.yar /home/user/Downloads/
+```bash
+# Alt klasörlerle birlikte derin tarama
+yara64.exe -r ./rules/RediShell_NetworkBehavior.yar C:\Windows\Temp\
 
 ```
 
-* `-r`: Alt klasörleri de kapsayacak şekilde (recursive) tarar.
+### 2. Performans Optimizasyonu (Compiling)
+
+Büyük veri setlerinde tarama hızını %300 artırmak için kuralları derleyin:
+
+```bash
+yarac64.exe all_rules.yar compiled_rules.bin
+yara64.exe compiled_rules.bin /path/to/target
+
+```
 
 ---
 
-## 🔍 Tespit Kapsamı (Detection Coverage)
+## 💼 Operasyonel Faydalar
 
-Bu kural seti aşağıdaki tehdit vektörlerini kapsar:
+<details>
+<summary><b>🛡️ SOC & Tehdit Avcıları İçin</b></summary>
 
-| Kural Adı | Hedef (Target) | MITRE ATT&CK ID | Açıklama |
-| --- | --- | --- | --- |
-| **APT_Weaponized_LNK_Phishing** | Başlangıç Erişimi | **T1566.002** | İçerisine zararlı `cmd` veya `powershell` komutları gömülmüş sahte LNK (Kısayol) dosyalarını yakalar. |
-| **APT_PowerShell_Obfuscated_Dropper** | Çalıştırma & Gizlenme | **T1059.001, T1027** | Base64 ile şifrelenmiş ve `IEX` (Invoke-Expression) ile bellekte çalıştırılan indirici (dropper) betikleri tespit eder. |
-| **APT_Generic_Covert_RAT_Payload** | Komuta & Kontrol | **T1547.001, T1056** | Sisteme yerleşen, Registry kayıtlarıyla kalıcılık sağlayan ve klavye hareketlerini izleyen (Keylogger) RAT yazılımlarını bulur. |
+* **MTTD Azaltımı:** Karmaşık tehditleri saniyeler içinde tespit edin.
+* **SIEM Uyumluluğu:** Kuralları doğrudan SIEM veya EDR platformlarınıza entegre edin.
+</details>
+
+<details>
+<summary><b>🔬 Malware Analistleri İçin</b></summary>
+
+* **Deep Analysis:** Zararlı yazılımların paketlenmiş (packed) hallerinden bile kurtulabilen string yapıları.
+* **Behavioral IOCs:** Sadece dosya hash'ine değil, fonksiyon çağrılarına odaklanan tespitler.
+</details>
+
+<details>
+<summary><b>🚨 Incident Response (IR) Ekipleri İçin</b></summary>
+
+* **Artifact Detection:** Adli bilişim süreçlerinde kalıntı analizi.
+* **Persistence Hunting:** Kayıt defteri ve servislerdeki gizli kalıcılık yöntemlerini yakalayın.
+</details>
 
 ---
 
-## ⚠️ Neden Bu Kurala İhtiyacınız Var?
+## 🎯 Neden Bu Repository'yi Takip Etmelisiniz?
 
-Saldırganlar artık `.exe` dosyası göndermek yerine, güvenli görünen "Belge Kısayolları" (LNK) ve bellekte çalışan kodlar kullanıyor.
-
-* **Geleneksel Antivirüsler:** Genellikle dosya imzasına bakar. LNK dosyasının içi sürekli değiştiği için kaçırabilirler.
-* **APT Covert Access Hunter:** Dosyanın *neye benzediğine* değil, *ne yapmaya çalıştığına* bakar.
-
-> *"Bir sistemin güvenliği, en zayıf halkanın görünürlüğü kadardır. Bu kurallar, o görünmez halkayı aydınlatmak için tasarlanmıştır."*
+* **✅ High-Fidelity:** Yanlış alarmları minimize eden gelişmiş mantıksal operatörler.
+* **📡 Live Intelligence:** Tehdit dünyasındaki değişimlere göre haftalık güncellenen kural setleri.
+* **🏗️ Modular Structure:** Her tehdit ailesi için kategorize edilmiş klasör yapısı.
 
 ---
 
-## 🤝 Katkıda Bulunma (Contributing)
+## 📞 İletişim & Topluluk
 
-Bu proje açık kaynaklıdır ve topluluk katkısına açıktır.
+<div align="left">
+<a href="[https://sibermerkez.com/](https://sibermerkez.com/)">🌐 <b>Web:</b> Siber Merkez</a>
 
-1. Fork edin.
-2. Yeni bir dal (branch) oluşturun (`git checkout -b feature/YeniKural`).
-3. Değişikliklerinizi commit edin.
-4. Bir "Pull Request" gönderin.
+
+
+
+<a href="[https://www.linkedin.com/in/umid-mammadov-951968278/](https://www.linkedin.com/in/umid-mammadov-951968278/)">🔗 <b>LinkedIn:</b> Umid Mammadov</a>
+
+
+
+
+<a href="[https://www.youtube.com/@umidcyber](https://www.youtube.com/@umidcyber)">📺 <b>YouTube:</b> Teknik Analizler</a>
+
+
+
+
+<a href="mailto:umid.cybersec@gmail.com">📧 <b>E-Posta:</b> umid.cybersec@gmail.com</a>
+</div>
+
+---
+
+<div align="center">
+<sub>UmidCyber tarafından ❤️ ve Siber Güvenlik Tutkusu ile geliştirilmiştir.</sub>
+</div>
 
 ---
